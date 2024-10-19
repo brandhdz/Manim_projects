@@ -1,0 +1,25 @@
+from manim import *
+
+class Solution(Scene):
+    def construct(self):
+        eq1 = MathTex(" {{a}}x^2 + bx + c = 0")
+        eq2 = MathTex(r" x^2 + \frac{b}{a}x + \frac{c}{a} = 0")
+        eq3 = MathTex(r" x^2 + \frac{b}{a}x = - \frac{c}{a} ")
+        eq4 = MathTex(r" x^2 + 2\left(\frac{b}{2a}\right)x + \left(\frac{b}{2a}\right)^{2} = - \frac{c}{a} + \left(\frac{b}{2a}\right)^{2} ")
+        eq5 = MathTex(r" \left(x + \frac{b}{2a}\right)^{2} = \frac{b^{2}- 4ac}{4a^{2}} ")
+        eq6 = MathTex(r" x + \frac{b}{2a} = \pm  \frac{\sqrt(b^{2}- 4ac)}{2a} ")
+        eq7 = MathTex(r" x =  \frac{-b \pm \sqrt(b^{2}- 4ac)}{2a} ")
+        self.add(eq1)
+        self.wait()
+        self.play(TransformMatchingTex(eq1, eq2))
+        self.wait()
+        self.play(TransformMatchingShapes(eq2, eq3))
+        self.wait()
+        self.play(TransformMatchingShapes(eq3, eq4))
+        self.wait()
+        self.play(TransformMatchingShapes(eq4, eq5))
+        self.wait()
+        self.play(TransformMatchingShapes(eq5, eq6))
+        self.wait()
+        self.play(TransformMatchingShapes(eq6, eq7))
+        self.wait()
