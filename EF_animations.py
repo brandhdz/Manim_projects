@@ -9,7 +9,7 @@ class EF_graphs(Scene):
                       font_size = 40)
         
         axes = Axes(
-                    x_range = [2.1, 5 + 2.1, 1],
+                    x_range = [0, 5, 1],
                     y_range = [-10, 10, 2],
                     x_length = 10,
                     y_length = 4,
@@ -24,7 +24,7 @@ class EF_graphs(Scene):
             plots += axes.plot(lambda r: -2*r + n,
                                color = RED)
         #for m in np.arange(0, 100, 10):
-            plots += axes.plot(lambda r: 2*r + 4*np.log(np.abs((r - 2)/2)) + n,
+            plots += axes.plot(lambda r: 2*r + 4*np.log(np.abs((r - 2 + 1e-10)/2)) + n,
                                color = BLUE)
             #plots += axes.plot(lambda r: 2*r + 4*np.log((2 -r)/2) + n,
                                #color = BLUE)
