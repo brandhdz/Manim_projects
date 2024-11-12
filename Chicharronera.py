@@ -4,13 +4,15 @@ class Solution(Scene):
     def construct(self):
 
         title = Text("La chicharronera", font_size = 38, color = YELLOW)
-        title_up = Text("Derivación", font_size = 40, color = BLUE)
+        title.shift(2*UP)
+        title_up = Text("Derivación", font_size = 48, color = BLUE)
         title_up.to_edge(UP)
 
-        sqr_term = MathTex("+", "\\left(", "{b \\over 2a}", "\\right)^2", color = RED)
+        sqr_term = MathTex("+", "\\left(", "{b \\over 2a}", "\\right)^2",
+                           color = RED)
         sqr_term.to_edge(DOWN)
 
-        terms = ["a", "x^2", "+", "b", "x", "+", "c", "=", "0"]
+        terms = ["a", "x^2", "+", "b", "x", "+", "c", "=", "0", "2"]
         
         eq1 = MathTex("a", "x^2", "+", "b", "x", "+", "c", "=", "0",
                       substrings_to_isolate = terms)
@@ -30,41 +32,42 @@ class Solution(Scene):
         eq7 = MathTex("x", "+", "{b \\over 2a}", "=", "\\pm", "{\\sqrt{b^{2}- 4ac} \\over 2a}")
         eq8 = MathTex("x", "=",  "{-b \\pm \\sqrt{b^{2}- 4ac} \\over 2a}")
 
-        VGroup(title, eq8).arrange(DOWN)
-        self.play(Write(title), FadeIn(eq8, shift=DOWN))
-        self.wait()
+        VGroup(title, eq8)
+        self.play(Write(title))
 
-        self.play(Transform(title, title_up),
-                  LaggedStart(*[FadeOut(obj, shift = DOWN) for obj in eq8]))
+        self.play(FadeIn(eq8, shift=DOWN))
         self.wait()
         
-        self.add(eq1)
+        self.play(Transform(title, title_up),
+                  LaggedStart(*[FadeOut(obj, shift = DOWN) for obj in eq8]))
+
+        self.play(FadeIn(eq1, shift = UP))
+        self.wait(1.5)
         self.play(TransformMatchingTex(eq1, eq2))
-        self.wait()
+        self.wait(1.5)
         self.play(TransformMatchingTex(eq2, eq3))
-        self.wait()
-        self.play(TransformMatchingTex(eq3, eq4))
-        self.wait()
-        #self.clear()
+        self.wait(1.5)
+        self.play(TransformMatchingShapes(eq3, eq4))
+        self.wait(1.5)
 
         self.play(ReplacementTransform(eq4[0:6], eq5[0:6]),
                   ReplacementTransform(eq4[6], eq5[10]),
                   ReplacementTransform(eq4[7:], eq5[11:13]))
-        self.wait()
+        self.wait(1.5)
         
         self.play(FadeIn(sqr_term))
-        self.wait()
+        self.wait(1.5)
 
         self.play(ReplacementTransform(sqr_term[0:4].copy(), eq5[6:10]),
                   ReplacementTransform(sqr_term[0:4], eq5[13:17]))
-        self.wait()
+        self.wait(1.5)
 
         self.play(TransformMatchingShapes(eq5[:], eq6[:]))
-        self.wait(2)
+        self.wait(1.5)
         self.play(TransformMatchingShapes(eq6[:], eq7[:]))
-        self.wait(2)
+        self.wait(1.5)
         self.play(TransformMatchingShapes(eq7[:], eq8[:]))
-        self.wait(2)
+        self.wait(1.5)
 
 class quadratic(Scene):
     def construct(self):
