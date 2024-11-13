@@ -1,5 +1,15 @@
 from manim import *
 
+#config.background_color = WHITE
+
+altura_actual = config.pixel_height
+config.pixel_height = config.pixel_width
+config.pixel_width = altura_actual
+
+config.frame_width = config.frame_height * 9 / 16
+FRAME_HEIGHT = config.frame_height
+FRAME_WIDTH = config.frame_width
+
 class Solution(Scene):
     def construct(self):
 
@@ -21,21 +31,21 @@ class Solution(Scene):
         eq3 = MathTex("x^2", "+", "{b \\over a}", "x", "=", "-", "{c \\over a}",
                       substrings_to_isolate = terms)
         eq4 = MathTex("x^2", "+", "2\\left(", "{b \\over 2a}", "\\right)", "x", "=",
-                      "-", "{c \\over a}")
+                      "-", "{c \\over a}").scale(0.8)
                       #substrings_to_isolate = terms)
         eq5 = MathTex("x^2", "+", "2\\left(", "{b \\over 2a}", "\\right)", "x",
                       "+", "\\left(", "{b \\over 2a}", "\\right)^2", "=", "-",
-                      "{c \\over a}", "+", "\\left(", "{b \\over 2a}", "\\right)^2")
+                      "{c \\over a}", "+", "\\left(", "{b \\over 2a}", "\\right)^2").scale(0.5)
                       #substrings_to_isolate = terms )
         
-        eq6 = MathTex("\\left(", "x", "+", "{b \\over 2a}", "\\right)^2", "=", "{b^{2}- 4ac \\over 4a^{2}}")
-        eq7 = MathTex("x", "+", "{b \\over 2a}", "=", "\\pm", "{\\sqrt{b^{2}- 4ac} \\over 2a}")
+        eq6 = MathTex("\\left(", "x", "+", "{b \\over 2a}", "\\right)^2", "=", "{b^{2}- 4ac \\over 4a^{2}}").scale(0.8)
+        eq7 = MathTex("x", "+", "{b \\over 2a}", "=", "\\pm", "{\\sqrt{b^{2}- 4ac} \\over 2a}").scale(0.8)
         eq8 = MathTex("x", "=",  "{-b \\pm \\sqrt{b^{2}- 4ac} \\over 2a}")
 
         VGroup(title, eq8)
         self.play(Write(title))
 
-        self.play(FadeIn(eq8, shift=DOWN))
+        self.play(FadeIn(eq8, shift = DOWN))
         self.wait()
         
         self.play(Transform(title, title_up),
