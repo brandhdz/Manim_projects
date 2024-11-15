@@ -13,34 +13,38 @@ FRAME_WIDTH = config.frame_width
 class Solution(Scene):
     def construct(self):
 
-        title = Text("La chicharronera", font_size = 38, color = YELLOW)
+        title = Text("La chicharronera", font_size = 35, color = YELLOW)
         title.shift(2*UP)
         title_up = Text("Derivación", font_size = 48, color = BLUE)
         title_up.to_edge(UP)
 
         sqr_term = MathTex("+", "\\left(", "{b \\over 2a}", "\\right)^2",
-                           color = RED)
+                           color = RED).scale(0.8)
         sqr_term.to_edge(DOWN)
 
-        terms = ["a", "x^2", "+", "b", "x", "+", "c", "=", "0", "2"]
+        terms = ["a", "x^2", "+", "b", "x", "+", "c", "=", "0"]
         
         eq1 = MathTex("a", "x^2", "+", "b", "x", "+", "c", "=", "0",
-                      substrings_to_isolate = terms)
+                      substrings_to_isolate = terms).scale(0.8)
         eq2 = MathTex("x^2", "+", "{b \\over a}", "x", "+", "{c \\over a}", "=", "0",
-                      substrings_to_isolate = terms)
+                      substrings_to_isolate = terms).scale(0.8)
         eq3 = MathTex("x^2", "+", "{b \\over a}", "x", "=", "-", "{c \\over a}",
-                      substrings_to_isolate = terms)
+                      substrings_to_isolate = terms).scale(0.8)
         eq4 = MathTex("x^2", "+", "2\\left(", "{b \\over 2a}", "\\right)", "x", "=",
                       "-", "{c \\over a}").scale(0.8)
                       #substrings_to_isolate = terms)
         eq5 = MathTex("x^2", "+", "2\\left(", "{b \\over 2a}", "\\right)", "x",
                       "+", "\\left(", "{b \\over 2a}", "\\right)^2", "=", "-",
-                      "{c \\over a}", "+", "\\left(", "{b \\over 2a}", "\\right)^2").scale(0.5)
+                      "{c \\over a}", "+", "\\left(", "{b \\over 2a}",
+                      "\\right)^2").scale(0.4)
                       #substrings_to_isolate = terms )
         
-        eq6 = MathTex("\\left(", "x", "+", "{b \\over 2a}", "\\right)^2", "=", "{b^{2}- 4ac \\over 4a^{2}}").scale(0.8)
-        eq7 = MathTex("x", "+", "{b \\over 2a}", "=", "\\pm", "{\\sqrt{b^{2}- 4ac} \\over 2a}").scale(0.8)
-        eq8 = MathTex("x", "=",  "{-b \\pm \\sqrt{b^{2}- 4ac} \\over 2a}")
+        eq6 = MathTex("\\left(", "x", "+", "{b \\over 2a}", "\\right)^2", "=",
+                      "{b^{2}- 4ac \\over 4a^{2}}").scale(0.8)
+        eq7 = MathTex("x", "+", "{b \\over 2a}", "=", "\\pm",
+                      "{\\sqrt{b^{2}- 4ac} \\over 2a}").scale(0.8)
+        eq8 = MathTex("x", "=",
+                      "{-b \\pm \\sqrt{b^{2}- 4ac} \\over 2a}").scale(0.8)
 
         VGroup(title, eq8)
         self.play(Write(title))
