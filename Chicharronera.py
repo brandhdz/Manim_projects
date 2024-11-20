@@ -20,7 +20,7 @@ class Solution(Scene):
 
         sqr_term = MathTex("+", "\\left(", "{b \\over 2a}", "\\right)^2",
                            color = RED).scale(0.8)
-        sqr_term.to_edge(DOWN)
+        sqr_term.shift(2*DOWN)
 
         terms = ["a", "x^2", "+", "b", "x", "+", "c", "=", "0"]
         
