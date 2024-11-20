@@ -254,10 +254,14 @@ class grid_transformation(Scene):
         grid.prepare_for_nonlinear_transform()
 
         #matrix = [[1,0],[-1,0]]
-        
-        self.play(grid.animate.apply_function(
-            lambda p: p + np.array([-p[1], p[0], 0])),
+
+        self.play(ApplyPointwiseFunction(
+            lambda p: np.array([p[0]*p[1], p[0] + p[1], 0]), grid),
                   run_time=3)
+        
+        # self.play(grid.animate.apply_point_wise(
+        #     lambda p: np.array([p[0]*p[1], p[0] + p[1], 0])),
+        #           run_time=3)
         #self.play(grid.animate.apply_matrix(matrix), run_time=3)
         self.wait()
         self.play(Transform(grid_title, grid_transform_title))
@@ -293,7 +297,7 @@ class follow_curve(MovingCameraScene):
         dot_1 = Dot(ax.i2gp(graph.t_min, graph))
         dot_2 = Dot(ax.i2gp(graph.t_max, graph))
 
-        self.add(ax, graph, dot_1, dot_2, moving_dot)
+        self.add(ax, dot_1, dot_2, moving_dot)
         self.play(self.camera.frame.animate.scale(0.5).move_to(moving_dot),
                   run_time = 2)
 
@@ -301,7 +305,8 @@ class follow_curve(MovingCameraScene):
             mob.move_to(moving_dot.get_center())
 
         self.camera.frame.add_updater(update_curve)
-        self.play(MoveAlongPath(moving_dot, graph, rate_func=linear), run_time = 5)
+        self.play(MoveAlongPath(moving_dot, graph, rate_func = linear),
+                  Create(graph, rate_func = linear), run_time = 5)
         self.camera.frame.remove_updater(update_curve)
 
         self.play(Restore(self.camera.frame), run_time = 2)
